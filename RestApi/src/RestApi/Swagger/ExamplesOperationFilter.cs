@@ -19,8 +19,8 @@ namespace RestApi.Swagger
             {
                 var schema = context.SchemaRegistry.GetOrRegister(attr.ResponseType);
 
-                var response = operation.Responses.FirstOrDefault(x => x.Value.Schema.Type == schema.Type 
-                                                                    && x.Value.Schema.Ref == schema.Ref).Value;
+                var response = operation.Responses.FirstOrDefault(res => res.Value.Schema.Type == schema.Type 
+                                                                    && res.Value.Schema.Ref == schema.Ref).Value;
 
                 if (response != null)
                 {
