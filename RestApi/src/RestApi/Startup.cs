@@ -50,7 +50,10 @@ namespace RestApi
 
             services.AddSwaggerGen(options =>
             {
-                options.IncludeXmlComments(xmlDocPath);
+                if (File.Exists(xmlDocPath))
+                {
+                    options.IncludeXmlComments(xmlDocPath);
+                }
                 options.DescribeAllEnumsAsStrings();
                 options.OperationFilter<ExamplesOperationFilter>();
             });

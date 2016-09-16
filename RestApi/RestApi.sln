@@ -8,9 +8,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBD97B28-3AFF-4121-A4E7-6642499DAA4A}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		.nuget\NuGet.config = .nuget\NuGet.config
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RestApi", "src\RestApi\RestApi.xproj", "{49E1B26C-D443-4512-943C-C61A18519AD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A71AF411-A499-4470-A3E2-302119743BC2}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RestApi.IntegrationTest", "RestApi.IntegrationTest\RestApi.IntegrationTest.xproj", "{2C4B78E9-091F-471E-9666-FF666A1EF34D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RestApi.UnitTest", "RestApi.UnitTest\RestApi.UnitTest.xproj", "{D0960288-9D52-44F9-8F7A-54A533D48172}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,11 +29,21 @@ Global
 		{49E1B26C-D443-4512-943C-C61A18519AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49E1B26C-D443-4512-943C-C61A18519AD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49E1B26C-D443-4512-943C-C61A18519AD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C4B78E9-091F-471E-9666-FF666A1EF34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C4B78E9-091F-471E-9666-FF666A1EF34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C4B78E9-091F-471E-9666-FF666A1EF34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C4B78E9-091F-471E-9666-FF666A1EF34D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0960288-9D52-44F9-8F7A-54A533D48172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0960288-9D52-44F9-8F7A-54A533D48172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0960288-9D52-44F9-8F7A-54A533D48172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0960288-9D52-44F9-8F7A-54A533D48172}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{49E1B26C-D443-4512-943C-C61A18519AD4} = {E8DDBE77-1508-4FFD-96D9-61CBA3E11277}
+		{2C4B78E9-091F-471E-9666-FF666A1EF34D} = {A71AF411-A499-4470-A3E2-302119743BC2}
+		{D0960288-9D52-44F9-8F7A-54A533D48172} = {A71AF411-A499-4470-A3E2-302119743BC2}
 	EndGlobalSection
 EndGlobal

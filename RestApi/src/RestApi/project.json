@@ -29,7 +29,7 @@
     "netcoreapp1.0": {
       "imports": [
         "dotnet5.6",
-        "portable-net45+win8"
+        "portable-net451+win8"
       ]
     }
   },
