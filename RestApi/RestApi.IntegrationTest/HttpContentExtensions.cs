@@ -11,10 +11,5 @@ namespace RestApi.IntegrationTest
         {
             return await content.ReadAsStringAsync().ContinueWith(t => JsonConvert.DeserializeObject<T>(t.Result));
         }
-
-        public static StringContent ToJsonStringContent(this object content)
-        {
-            return new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
-        }
     }
 }
