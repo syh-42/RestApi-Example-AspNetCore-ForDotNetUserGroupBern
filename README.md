@@ -6,4 +6,4 @@ Contents of the the talk:
   - REST API mit ASP.NET Core (including Basics, DI, Middleware, Strongly Typed Configuration Settings, Controllers)
   - Small EntityFrameworkCore-Model (for simulating a small CRUD-approach with REST)
   - Swagger-Integrations (including Basics, Comments, OperationFilters)
-  - xUnit Integration- and UnitTests
+  - xUnit Integration- and UnitTests (with In-Memory Web- and DB-Server, faking data with Bogus, mocking with Moq)
