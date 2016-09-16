@@ -39,6 +39,7 @@ namespace RestApi
                 .AddJsonOptions(option => option.SerializerSettings.Converters.Add(new StringEnumConverter { CamelCaseText = true }));
 
             services.AddTransient<ICalculator, Calculator>();
+            services.AddTransient<IFoo, Foo>();
 
             services.Configure<MySettings>(Configuration.GetSection("MySettings"));
 
