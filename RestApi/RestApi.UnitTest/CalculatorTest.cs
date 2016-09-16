@@ -19,6 +19,7 @@ namespace RestApi.UnitTest
             var value = calculator.CalculateBecauseOfSomething(x, y, input);
 
             value.Should().Be(expected);
+            mock.Verify(foo => foo.DoSomething(input), Times.Exactly(1));
         }
     }
 }

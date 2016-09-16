@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using Bogus;
 using RestApi.Model;
 using Xunit;
 using FluentAssertions;
-using Newtonsoft.Json;
-using RestApi.Swagger;
 
 namespace RestApi.IntegrationTest
 {

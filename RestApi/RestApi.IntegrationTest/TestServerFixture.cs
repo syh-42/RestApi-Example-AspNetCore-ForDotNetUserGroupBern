@@ -35,8 +35,7 @@ namespace RestApi.IntegrationTest
             services.AddDbContext<TDbContext>(options =>
             {
                 options.UseInMemoryDatabase();
-            });
-        }
+            });        }
 
         public void Dispose()
         {
