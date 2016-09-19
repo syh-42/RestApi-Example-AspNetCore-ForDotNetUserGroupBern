@@ -65,10 +65,10 @@ namespace RestApi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            app.UseLoggerMiddleware();
 
             app.UseMvc();
             app.UseCorsWithStandardMethods();
-            app.UseLoggerMiddleware();
 
             app.UseSwagger();
             app.UseSwaggerUi();

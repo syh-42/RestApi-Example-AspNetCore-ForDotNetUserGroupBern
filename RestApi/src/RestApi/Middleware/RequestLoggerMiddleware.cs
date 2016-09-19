@@ -17,9 +17,9 @@ namespace RestApi.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            _logger.LogInformation($"Request auf {context.Request.Path} wurde gestartet");
+            _logger.LogInformation($"\n\r---------------------------------------\n\rRequest auf {context.Request.Path} wurde gestartet\n\r---------------------------------------");
             await _next.Invoke(context);
-            _logger.LogInformation("Anfrage fertig bearbeitet.");
+            _logger.LogInformation("\n\r---------------------------------------\n\rAnfrage fertig bearbeitet.\n\r---------------------------------------");
         }
     }
 }
