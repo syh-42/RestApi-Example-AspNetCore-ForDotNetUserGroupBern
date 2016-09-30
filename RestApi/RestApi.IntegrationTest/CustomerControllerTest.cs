@@ -80,7 +80,7 @@ namespace RestApi.IntegrationTest
 
             fakeCustomer.Name = Guid.NewGuid().ToString();
 
-            await _testServerFixture.Client.PutAsync("/api/customer", fakeCustomer.ToJsonStringContent());
+            await _testServerFixture.Client.PutAsync($"/api/customer/{fakeCustomer.Id}", fakeCustomer.ToJsonStringContent());
 
             _testServerFixture.DbContext.Customers.First().Name.ShouldBeEquivalentTo(fakeCustomer.Name);
         }
