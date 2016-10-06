@@ -62,10 +62,12 @@ namespace RestApi.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]Customer customer)
+        public Customer Post([FromBody]Customer customer)
         {
             _salesDbContext.Customers.Add(customer);
             _salesDbContext.SaveChanges();
+
+            return customer;
         }
 
         [HttpPut("{id}")]

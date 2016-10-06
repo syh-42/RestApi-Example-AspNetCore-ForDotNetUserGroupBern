@@ -8,7 +8,7 @@ using FluentAssertions;
 
 namespace RestApi.IntegrationTest
 {
-    public class CustomerControllerTest : IClassFixture<TestServerFixture<Startup, SalesDbContext>>, IDisposable
+    public class CustomerControllerTest : IClassFixture<TestServerFixture<Startup, SalesDbContext>>
     {
         private readonly TestServerFixture<Startup, SalesDbContext> _testServerFixture;
 
@@ -26,8 +26,9 @@ namespace RestApi.IntegrationTest
 
             var response = await _testServerFixture.Client.GetAsync("/api/customer");
             var result = await response.Content.ReadAsJsonAsync<List<Customer>>();
+            var totalCount = _testServerFixture.DbContext.Customers.Count();
 
-            result.Should().HaveCount(10);
+            result.Should().HaveCount(totalCount);
         }
 
         [Fact]
@@ -42,8 +43,7 @@ namespace RestApi.IntegrationTest
             var response = await _testServerFixture.Client.GetAsync($"/api/customer?name={testName}");
             var result = await response.Content.ReadAsJsonAsync<List<Customer>>();
 
-            result.First().Name.ShouldBeEquivalentTo(testName);
-            result.Should().HaveCount(1);
+            result.FirstOrDefault(el => el.Name == testName).Should().NotBeNull();
         }
 
         [Fact]
@@ -60,15 +60,25 @@ namespace RestApi.IntegrationTest
             result.Id.ShouldBeEquivalentTo(customer.Id);
         }
 
+
+        private List<Customer> GetFakeCustomers(int amount)
+        {
+            return new Faker<Customer>()
+                .RuleFor(u => u.Name, f => f.Name.LastName())
+                .RuleFor(u => u.Vorname, f => f.Name.FirstName())
+                .Generate(amount).ToList();
+        }
+
         [Fact]
         public async void CreateCustomer_CreatesTheCustomer()
         {
             var fakeCustomer = GetFakeCustomers(1).First();
 
-            await _testServerFixture.Client.PostAsync("/api/customer", fakeCustomer.ToJsonStringContent());
+            var response = await _testServerFixture.Client.PostAsync("/api/customer", fakeCustomer.ToJsonStringContent());
+            var result = await response.Content.ReadAsJsonAsync<Customer>();
 
-            _testServerFixture.DbContext.Customers.Should().HaveCount(1);
-            _testServerFixture.DbContext.Customers.First().Name.ShouldBeEquivalentTo(fakeCustomer.Name);
+            result.Should().NotBeNull();
+            result.Name.Should().BeEquivalentTo(fakeCustomer.Name);
         }
 
         [Fact]
@@ -82,7 +92,7 @@ namespace RestApi.IntegrationTest
 
             await _testServerFixture.Client.PutAsync($"/api/customer/{fakeCustomer.Id}", fakeCustomer.ToJsonStringContent());
 
-            _testServerFixture.DbContext.Customers.First().Name.ShouldBeEquivalentTo(fakeCustomer.Name);
+            _testServerFixture.DbContext.Customers.First(el => el.Id == fakeCustomer.Id).Name.ShouldBeEquivalentTo(fakeCustomer.Name);
         }
 
         [Fact]
@@ -95,20 +105,7 @@ namespace RestApi.IntegrationTest
 
             await _testServerFixture.Client.DeleteAsync($"/api/customer/{customer.Id}");
 
-            _testServerFixture.DbContext.Customers.Should().HaveCount(0);
-        }
-
-        private List<Customer> GetFakeCustomers(int amount)
-        {
-            return new Faker<Customer>()
-                .RuleFor(u => u.Name, f => f.Name.LastName())
-                .RuleFor(u => u.Vorname, f => f.Name.FirstName())
-                .Generate(amount).ToList();
-        }
-
-        public void Dispose()
-        {
-            _testServerFixture.DbContext.Database.EnsureDeleted();
+            _testServerFixture.DbContext.Customers.FirstOrDefault(el => el.Id == customer.Id).Should().BeNull();
         }
     }
 }
